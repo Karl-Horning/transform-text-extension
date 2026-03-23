@@ -35,14 +35,36 @@ const replaceSelectedText = (text: string): void => {
 
     if (!activeElement) return;
 
-    const isEditable =
-        activeElement.isContentEditable ||
+    const isInputOrTextarea =
         activeElement.tagName === "INPUT" ||
         activeElement.tagName === "TEXTAREA";
 
-    if (!isEditable) return;
+    const isContentEditable = activeElement.isContentEditable;
 
-    document.execCommand("insertText", false, text);
+    if (!isInputOrTextarea && !isContentEditable) return;
+
+    if (isInputOrTextarea) {
+        const el = activeElement as HTMLInputElement | HTMLTextAreaElement;
+        const start = el.selectionStart ?? 0;
+        document.execCommand("insertText", false, text);
+        el.setSelectionRange(start, start + text.length);
+        return;
+    }
+
+    if (isContentEditable) {
+        const selection = window.getSelection();
+        if (!selection || selection.rangeCount === 0) return;
+        const range = selection.getRangeAt(0);
+        const start = range.startOffset;
+        const anchorNode = selection.anchorNode;
+        document.execCommand("insertText", false, text);
+        if (!anchorNode) return;
+        const newRange = document.createRange();
+        newRange.setStart(anchorNode, start);
+        newRange.setEnd(anchorNode, start + text.length);
+        selection.removeAllRanges();
+        selection.addRange(newRange);
+    }
 };
 
 /**
