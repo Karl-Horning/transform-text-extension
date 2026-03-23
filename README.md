@@ -69,6 +69,7 @@ Then load the extension in Chrome:
 
 - Transformations only work in editable fields such as `<input>` and `<textarea>` elements — selected text in non-editable elements such as paragraphs and headings cannot be replaced
 - Escape Newlines and Unescape Newlines may not work as expected in all contexts due to a Chrome limitation where `selectionText` strips newlines from selected text
+- Text replacement and re-selection may not work in some complex web applications that manage their own editor state, such as Copilot and Gemini
 
 [↑ Back to top](#transform-text-extension)
 
