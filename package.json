@@ -1,0 +1,28 @@
+{
+  "name": "transform-text-extension",
+  "version": "1.0.0",
+  "description": "Adds text transformation options to the context menu in Chromium browsers.",
+  "homepage": "https://github.com/Karl-Horning/transform-text-extension#readme",
+  "bugs": {
+    "url": "https://github.com/Karl-Horning/transform-text-extension/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Karl-Horning/transform-text-extension.git"
+  },
+  "type": "module",
+  "license": "MIT",
+  "author": "Karl Horning",
+  "scripts": {
+    "build": "node build.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^4.1.1",
+    "esbuild": "^0.27.4",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}
