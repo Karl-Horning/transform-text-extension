@@ -15,9 +15,11 @@
   "author": "Karl Horning",
   "scripts": {
     "build": "node build.js",
+    "build:zip": "npm run build && npm run _zip",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "_zip": "zip -r transform-text-extension.zip manifest.json dist/ icons/"
   },
   "devDependencies": {
     "@types/chrome": "^0.1.38",
