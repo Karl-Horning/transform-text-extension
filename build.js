@@ -4,6 +4,7 @@ const sharedConfig = {
     bundle: true,
     platform: "browser",
     target: "es2020",
+    format: "esm",
     sourcemap: false,
 };
 
