@@ -2,6 +2,8 @@
 
 A Chromium extension that adds text transformation options to the context menu. Select any text in an editable field, right-click, and apply a transformation instantly.
 
+![Transform Text Extension context menu showing transformation options](store/screenshot-1280x800.png)
+
 - **Author**: [Karl Horning](https://github.com/Karl-Horning)
 - **Licence**: MIT
 
@@ -13,6 +15,7 @@ A Chromium extension that adds text transformation options to the context menu. 
 - [Scripts](#scripts)
 - [Transformations](#transformations)
 - [Limitations](#limitations)
+- [Feedback and Issues](#feedback-and-issues)
 - [Design](#design)
 
 ## Tech Stack
@@ -45,12 +48,13 @@ Then load the extension in Chrome:
 
 ## Scripts
 
-| Command                 | Description                   |
-| ----------------------- | ----------------------------- |
-| `npm run build`         | Compile TypeScript to `dist/` |
-| `npm run test`          | Run all tests once            |
-| `npm run test:watch`    | Run tests in watch mode       |
-| `npm run test:coverage` | Run tests with coverage       |
+| Command                 | Description                            |
+| ----------------------- | -------------------------------------- |
+| `npm run build`         | Compile TypeScript to `dist/`          |
+| `npm run build:zip`     | Build and package for store submission |
+| `npm run test`          | Run all tests once                     |
+| `npm run test:watch`    | Run tests in watch mode                |
+| `npm run test:coverage` | Run tests with coverage                |
 
 [↑ Back to top](#transform-text-extension)
 
@@ -73,9 +77,15 @@ Then load the extension in Chrome:
 
 [↑ Back to top](#transform-text-extension)
 
+## Feedback and Issues
+
+Found a bug or have a suggestion? [Open an issue](https://github.com/Karl-Horning/transform-text-extension/issues).
+
+[↑ Back to top](#transform-text-extension)
+
 ## Design
 
-Source icon files are in `design/icons/` and were created in [Affinity](https://www.affinity.studio/graphic-design-software).
+Source icon files are in `design/icons/` and were created in [Affinity Designer](https://affinity.serif.com/en-gb/designer/).
 
 Built with [Claude](https://claude.ai) as an AI pair programmer.
 
