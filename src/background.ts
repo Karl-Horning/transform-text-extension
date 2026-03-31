@@ -39,8 +39,6 @@ const transformations: Record<string, (input: string) => string> = {
  * Labels displayed in the context menu for each transformation.
  */
 const menuItems: { id: string; title: string }[] = [
-    { id: "escapeNewlines", title: "Escape Newlines" },
-    { id: "unescapeNewlines", title: "Unescape Newlines" },
     { id: "uppercase", title: "Uppercase" },
     { id: "lowercase", title: "Lowercase" },
     { id: "snakeCase", title: "snake_case" },
@@ -52,6 +50,8 @@ const menuItems: { id: string; title: string }[] = [
     { id: "titleCaseAP", title: "AP Title Case" },
     { id: "sentenceCase", title: "Sentence Case" },
     { id: "trimWhitespace", title: "Trim Whitespace" },
+    { id: "escapeNewlines", title: "Escape Newlines" },
+    { id: "unescapeNewlines", title: "Unescape Newlines" },
 ];
 
 /**
