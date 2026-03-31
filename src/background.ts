@@ -1,3 +1,5 @@
+import browser from "webextension-polyfill";
+
 import {
     camelCase,
     escapeNewlines,
@@ -37,8 +39,6 @@ const transformations: Record<string, (input: string) => string> = {
  * Labels displayed in the context menu for each transformation.
  */
 const menuItems: { id: string; title: string }[] = [
-    { id: "escapeNewlines", title: "Escape Newlines" },
-    { id: "unescapeNewlines", title: "Unescape Newlines" },
     { id: "uppercase", title: "Uppercase" },
     { id: "lowercase", title: "Lowercase" },
     { id: "snakeCase", title: "snake_case" },
@@ -50,20 +50,22 @@ const menuItems: { id: string; title: string }[] = [
     { id: "titleCaseAP", title: "AP Title Case" },
     { id: "sentenceCase", title: "Sentence Case" },
     { id: "trimWhitespace", title: "Trim Whitespace" },
+    { id: "escapeNewlines", title: "Escape Newlines" },
+    { id: "unescapeNewlines", title: "Unescape Newlines" },
 ];
 
 /**
  * Creates the parent and child context menu items on extension install.
  */
-chrome.runtime.onInstalled.addListener(() => {
-    chrome.contextMenus.create({
+browser.runtime.onInstalled.addListener(() => {
+    browser.contextMenus.create({
         id: "transformText",
         title: "Transform Text",
         contexts: ["selection"],
     });
 
     menuItems.forEach(({ id, title }) => {
-        chrome.contextMenus.create({
+        browser.contextMenus.create({
             id,
             parentId: "transformText",
             title,
@@ -76,14 +78,14 @@ chrome.runtime.onInstalled.addListener(() => {
  * Listens for a context menu item click, applies the transformation,
  * and sends the result to the content script.
  */
-chrome.contextMenus.onClicked.addListener((info, tab) => {
+browser.contextMenus.onClicked.addListener((info, tab) => {
     const transformFn = transformations[info.menuItemId];
 
     if (!transformFn || !info.selectionText || !tab?.id) return;
 
     const transformed = transformFn(info.selectionText);
 
-    chrome.scripting.executeScript({
+    browser.scripting.executeScript({
         target: { tabId: tab.id },
         func: (text: string) => {
             const activeElement = document.activeElement as HTMLElement;
