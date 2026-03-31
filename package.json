@@ -16,6 +16,7 @@
   "scripts": {
     "build": "node build.js",
     "build:zip": "npm run build && npm run _zip",
+    "build:source-zip": "zip -r transform-text-extension-source.zip . --exclude '*node_modules*' --exclude '*dist*' --exclude '*.git*' --exclude '*transform-text-extension.zip*' --exclude '*transform-text-extension-source.zip*'",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
