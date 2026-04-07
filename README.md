@@ -1,6 +1,6 @@
 # Transform Text Extension
 
-A Chromium extension that adds text transformation options to the context menu. Select any text in an editable field, right-click, and apply a transformation instantly.
+A browser extension that adds text transformation options to the context menu. Select any text in an editable field, right-click, and apply a transformation instantly.
 
 ![Transform Text Extension context menu showing transformation options](store/screenshot-1280x800.png)
 
@@ -30,11 +30,19 @@ npm install
 npm run build
 ```
 
-Then load the extension in Chrome:
+Then load the extension in your browser:
+
+**Chrome / Edge:**
 
 1. Go to `chrome://extensions`
 2. Enable **Developer mode**
 3. Click **Load unpacked** and select the project folder
+
+**Firefox:**
+
+1. Go to `about:debugging#/runtime/this-firefox`
+2. Click **Load Temporary Add-on**
+3. Select the `manifest.json` file inside the project folder
 
 ## Scripts
 
@@ -58,7 +66,7 @@ Then load the extension in Chrome:
 ## Limitations
 
 - Transformations only work in editable fields such as `<input>` and `<textarea>` elements — selected text in non-editable elements such as paragraphs and headings cannot be replaced
-- Escape Newlines and Unescape Newlines may not work as expected in all contexts due to a Chrome limitation where `selectionText` strips newlines from selected text
+- Escape Newlines and Unescape Newlines may not work as expected in all contexts due to a browser limitation where `selectionText` strips newlines from selected text
 - Text replacement and re-selection may not work in some complex web applications that manage their own editor state, such as Copilot and Gemini
 
 ## Feedback and Issues
