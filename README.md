@@ -4,8 +4,10 @@ A Chromium extension that adds text transformation options to the context menu. 
 
 ![Transform Text Extension context menu showing transformation options](store/screenshot-1280x800.png)
 
-[![Available in the Chrome Web Store](store/chrome-web-store-badge.png)](https://chromewebstore.google.com/detail/transform-text/hniojnoepnkpmimpnbaljkkcmoaklcii)
-[![Available in the Microsoft Edge Add-ons store](store/edge-web-store-badge.png)](https://microsoftedge.microsoft.com/addons/detail/transform-text/jmmaiegdlpmbochdbahokkbjelncaioc)
+[![Available for Google Chrome](store/store-banners-chrome.webp)](https://chromewebstore.google.com/detail/transform-text/hniojnoepnkpmimpnbaljkkcmoaklcii)
+[![Available for Microsoft Edge](store/store-banners-edge.webp)](https://microsoftedge.microsoft.com/addons/detail/transform-text/jmmaiegdlpmbochdbahokkbjelncaioc)
+[![Available for Mozilla Firefox](store/store-banners-firefox.webp)](https://addons.mozilla.org/en-GB/firefox/addon/transform-text/)
+[![Support me on Ko-fi](store/support_me_on_kofi_badge_beige.webp)](https://ko-fi.com/karlhorning)
 
 - **Author**: [Karl Horning](https://github.com/Karl-Horning)
 - **Licence**: MIT
