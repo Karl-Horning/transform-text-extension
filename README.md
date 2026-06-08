@@ -9,9 +9,6 @@ A browser extension that adds text transformation options to the context menu. S
 [![Available for Mozilla Firefox](store/store-banners-firefox.webp)](https://addons.mozilla.org/en-GB/firefox/addon/transform-text/)
 [![Support me on Ko-fi](store/support_me_on_kofi_badge_beige.webp)](https://ko-fi.com/karlhorning)
 
-- **Author**: [Karl Horning](https://github.com/Karl-Horning)
-- **Licence**: MIT
-
 ## Tech Stack
 
 - **Language**: TypeScript
@@ -78,3 +75,7 @@ Found a bug or have a suggestion? [Open an issue](https://github.com/Karl-Hornin
 Source icon files are in `design/icons/` and were created in [Affinity Designer](https://affinity.serif.com/en-gb/designer/).
 
 Built with [Claude](https://claude.ai) as an AI pair programmer.
+
+## License
+
+Released under the [MIT License](./LICENSE) by [Karl Horning](https://github.com/Karl-Horning).
