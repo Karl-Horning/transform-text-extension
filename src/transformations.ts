@@ -341,3 +341,57 @@ export const sentenceCase = (input: string): string => {
 
     return trimmed.charAt(0).toUpperCase() + trimmed.slice(1).toLowerCase();
 };
+
+/**
+ * Capitalises the first letter of every word in the input string.
+ *
+ * @param input - The text to convert to start case.
+ * @returns The input string with every word capitalised.
+ */
+export const startCase = (input: string): string =>
+    input
+        .trim()
+        .split(/\s+/)
+        .map(capitalise)
+        .join(" ");
+
+/**
+ * Alternates the case of each letter in the input string, starting with uppercase.
+ *
+ * Non-alphabetic characters are preserved in their original positions
+ * and do not affect the alternation index.
+ *
+ * @param input - The text to transform into alternating case.
+ * @returns The input string with alternating letter casing.
+ */
+export const alternatingCase = (input: string): string => {
+    const trimmed = input.trim();
+    let letterIndex = 0;
+    return [...trimmed]
+        .map((char) => {
+            if (!/[a-zA-Z]/.test(char)) return char;
+            return letterIndex++ % 2 === 0
+                ? char.toUpperCase()
+                : char.toLowerCase();
+        })
+        .join("");
+};
+
+/**
+ * Removes all non-alphanumeric characters from the input string, replacing them with spaces.
+ *
+ * Accented characters are converted to their ASCII equivalents before removal
+ * (e.g. á → a, é → e). Consecutive special characters collapse to a single space.
+ *
+ * @param input - The text to strip of special characters.
+ * @returns The input string with accented characters normalised and special characters replaced by spaces.
+ */
+export const removeSpecialCharacters = (input: string): string => {
+    let result = "";
+    for (const char of input.trim().normalize("NFD")) {
+        const code = char.codePointAt(0) ?? 0;
+        if (code >= 0x0300 && code <= 0x036f) continue;
+        result += /[a-zA-Z0-9\s]/.test(char) ? char : " ";
+    }
+    return result.replace(/\s+/g, " ").trim();
+};

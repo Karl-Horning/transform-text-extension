@@ -1,14 +1,17 @@
 import { describe, expect, it } from "vitest";
 import {
+    alternatingCase,
     camelCase,
     capitalise,
     escapeNewlines,
     kebabCase,
     lowercase,
     pascalCase,
+    removeSpecialCharacters,
     sarcasticSpongeBob,
     sentenceCase,
     snakeCase,
+    startCase,
     titleCaseAP,
     titleCaseMla,
     trimWhitespace,
@@ -121,6 +124,69 @@ describe("Text Transformation Utilities", () => {
         });
     });
 
+    describe("startCase", () => {
+        it("capitalises the first letter of every word", () => {
+            expect(startCase("hello world")).toBe("Hello World");
+        });
+
+        it("lowercases the remaining letters of each word", () => {
+            expect(startCase("HELLO WORLD")).toBe("Hello World");
+        });
+
+        it("capitalises short words that MLA and AP would lowercase", () => {
+            expect(
+                startCase("the quick brown fox jumps over the lazy dog"),
+            ).toBe("The Quick Brown Fox Jumps Over The Lazy Dog");
+        });
+
+        it("returns an empty string for empty input", () => {
+            expect(startCase("")).toBe("");
+        });
+    });
+
+    describe("alternatingCase", () => {
+        it("alternates case starting with uppercase, skipping non-letters", () => {
+            expect(alternatingCase("hello world")).toBe("HeLlO wOrLd");
+        });
+
+        it("does not count spaces or numbers in the alternation index", () => {
+            expect(alternatingCase("hello 123 world")).toBe("HeLlO 123 wOrLd");
+        });
+
+        it("returns an empty string for empty input", () => {
+            expect(alternatingCase("")).toBe("");
+        });
+    });
+
+    describe("removeSpecialCharacters", () => {
+        it("replaces hyphens and underscores with spaces", () => {
+            expect(removeSpecialCharacters("this-is-kebab-case")).toBe(
+                "this is kebab case",
+            );
+            expect(removeSpecialCharacters("hello_world")).toBe("hello world");
+        });
+
+        it("removes punctuation and collapses resulting spaces", () => {
+            expect(removeSpecialCharacters("hello, world!")).toBe(
+                "hello world",
+            );
+        });
+
+        it("preserves numbers", () => {
+            expect(removeSpecialCharacters("hello 123 world")).toBe(
+                "hello 123 world",
+            );
+        });
+
+        it("converts accented characters to their ASCII equivalents", () => {
+            expect(removeSpecialCharacters("naïve café")).toBe("naive cafe");
+        });
+
+        it("returns an empty string for empty input", () => {
+            expect(removeSpecialCharacters("")).toBe("");
+        });
+    });
+
     describe("Edge cases", () => {
         it("all functions handle empty strings", () => {
             expect(escapeNewlines("")).toBe("");
@@ -134,6 +200,9 @@ describe("Text Transformation Utilities", () => {
             expect(titleCaseMla("")).toBe("");
             expect(titleCaseAP("")).toBe("");
             expect(sentenceCase("")).toBe("");
+            expect(startCase("")).toBe("");
+            expect(alternatingCase("")).toBe("");
+            expect(removeSpecialCharacters("")).toBe("");
         });
 
         it("all functions handle whitespace-only strings", () => {
