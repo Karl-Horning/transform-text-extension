@@ -39,17 +39,20 @@ Then load the extension in your browser:
 
 1. Go to `about:debugging#/runtime/this-firefox`
 2. Click **Load Temporary Add-on**
-3. Select the `manifest.json` file inside the project folder
+3. Select `manifest.firefox.json` inside the project folder
 
 ## Scripts
 
-| Command                 | Description                            |
-| ----------------------- | -------------------------------------- |
-| `npm run build`         | Compile TypeScript to `dist/`          |
-| `npm run build:zip`     | Build and package for store submission |
-| `npm run test`          | Run all tests once                     |
-| `npm run test:watch`    | Run tests in watch mode                |
-| `npm run test:coverage` | Run tests with coverage                |
+| Command                      | Description                                        |
+| ---------------------------- | -------------------------------------------------- |
+| `npm run build`              | Compile TypeScript to `dist/`                      |
+| `npm run build:zip`          | Build and package for Chrome / Edge                |
+| `npm run build:zip:firefox`  | Build and package for Firefox                      |
+| `npm run build:zip:all`      | Build and package for all browsers                 |
+| `npm run build:source-zip`   | Package source code for store submission           |
+| `npm run test`               | Run all tests once                                 |
+| `npm run test:watch`         | Run tests in watch mode                            |
+| `npm run test:coverage`      | Run tests with coverage                            |
 
 ## Transformations
 
