@@ -53,12 +53,26 @@ Then load the extension in your browser:
 
 ## Transformations
 
-- Escape / Unescape Newlines
+### Escaping
+
+- Escape Newlines / Unescape Newlines
+
+### Case
+
 - Uppercase / Lowercase
+- Sentence Case, Start Case, MLA Title Case, AP Title Case
+
+### Code Format
+
 - snake_case, kebab-case, PascalCase, camelCase
-- Sentence case, MLA Title Case, AP Title Case
-- Sarcastic SpongeBob
-- Trim Whitespace
+
+### Fun
+
+- Sarcastic SpongeBob, Alternating Case
+
+### Cleanup
+
+- Trim Whitespace, Remove Special Characters
 
 ## Limitations
 
