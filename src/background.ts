@@ -1,14 +1,17 @@
 import browser from "webextension-polyfill";
 
 import {
+    alternatingCase,
     camelCase,
     escapeNewlines,
     kebabCase,
     lowercase,
     pascalCase,
+    removeSpecialCharacters,
     sarcasticSpongeBob,
     sentenceCase,
     snakeCase,
+    startCase,
     titleCaseAP,
     titleCaseMla,
     trimWhitespace,
@@ -24,34 +27,48 @@ const transformations: Record<string, (input: string) => string> = {
     unescapeNewlines,
     uppercase,
     lowercase,
+    sentenceCase,
+    startCase,
+    titleCaseMla,
+    titleCaseAP,
     snakeCase,
     kebabCase,
     pascalCase,
     camelCase,
     sarcasticSpongeBob,
-    titleCaseMla,
-    titleCaseAP,
-    sentenceCase,
+    alternatingCase,
     trimWhitespace,
+    removeSpecialCharacters,
 };
 
+type MenuItem =
+    | { type: "separator"; id: string }
+    | { type?: never; id: string; title: string };
+
 /**
- * Labels displayed in the context menu for each transformation.
+ * Labels and separators for the context menu, organised to match the website's grouping.
  */
-const menuItems: { id: string; title: string }[] = [
+const menuItems: MenuItem[] = [
+    { id: "escapeNewlines", title: "Escape Newlines" },
+    { id: "unescapeNewlines", title: "Unescape Newlines" },
+    { id: "separator-case", type: "separator" },
     { id: "uppercase", title: "Uppercase" },
     { id: "lowercase", title: "Lowercase" },
+    { id: "sentenceCase", title: "Sentence Case" },
+    { id: "startCase", title: "Start Case" },
+    { id: "titleCaseMla", title: "MLA Title Case" },
+    { id: "titleCaseAP", title: "AP Title Case" },
+    { id: "separator-code", type: "separator" },
     { id: "snakeCase", title: "snake_case" },
     { id: "kebabCase", title: "kebab-case" },
     { id: "pascalCase", title: "PascalCase" },
     { id: "camelCase", title: "camelCase" },
+    { id: "separator-fun", type: "separator" },
     { id: "sarcasticSpongeBob", title: "Sarcastic SpongeBob" },
-    { id: "titleCaseMla", title: "MLA Title Case" },
-    { id: "titleCaseAP", title: "AP Title Case" },
-    { id: "sentenceCase", title: "Sentence Case" },
+    { id: "alternatingCase", title: "Alternating Case" },
+    { id: "separator-cleanup", type: "separator" },
     { id: "trimWhitespace", title: "Trim Whitespace" },
-    { id: "escapeNewlines", title: "Escape Newlines" },
-    { id: "unescapeNewlines", title: "Unescape Newlines" },
+    { id: "removeSpecialCharacters", title: "Remove Special Characters" },
 ];
 
 /**
@@ -64,13 +81,22 @@ browser.runtime.onInstalled.addListener(() => {
         contexts: ["selection"],
     });
 
-    menuItems.forEach(({ id, title }) => {
-        browser.contextMenus.create({
-            id,
-            parentId: "transformText",
-            title,
-            contexts: ["selection"],
-        });
+    menuItems.forEach((item) => {
+        if (item.type === "separator") {
+            browser.contextMenus.create({
+                id: item.id,
+                type: "separator",
+                parentId: "transformText",
+                contexts: ["selection"],
+            });
+        } else {
+            browser.contextMenus.create({
+                id: item.id,
+                parentId: "transformText",
+                title: item.title,
+                contexts: ["selection"],
+            });
+        }
     });
 });
 
