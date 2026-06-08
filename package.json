@@ -15,12 +15,15 @@
   "author": "Karl Horning",
   "scripts": {
     "build": "node build.js",
-    "build:zip": "npm run build && npm run _zip",
-    "build:source-zip": "zip -r transform-text-extension-source.zip . --exclude '*node_modules*' --exclude '*dist*' --exclude '*.git*' --exclude '*transform-text-extension.zip*' --exclude '*transform-text-extension-source.zip*'",
+    "build:zip": "npm run build && npm run _zip:chromium",
+    "build:zip:firefox": "npm run build && npm run _zip:firefox",
+    "build:zip:all": "npm run build && npm run _zip:chromium && npm run _zip:firefox",
+    "build:source-zip": "zip -r transform-text-extension-source.zip . --exclude '*node_modules*' --exclude '*dist*' --exclude '*.git*' --exclude '*transform-text-extension.zip*' --exclude '*transform-text-extension-firefox.zip*' --exclude '*transform-text-extension-source.zip*'",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "_zip": "zip -r transform-text-extension.zip manifest.json dist/ icons/"
+    "_zip:chromium": "zip -r transform-text-extension.zip manifest.json dist/ icons/",
+    "_zip:firefox": "cp manifest.json manifest.json.tmp && cp manifest.firefox.json manifest.json && zip -r transform-text-extension-firefox.zip manifest.json dist/ icons/ && mv manifest.json.tmp manifest.json"
   },
   "devDependencies": {
     "@types/chrome": "^0.1.38",
