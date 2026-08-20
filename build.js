@@ -1,3 +1,8 @@
+/**
+ * @fileoverview Bundles the background script and copies the manifest and
+ * icons into dist/, producing a self-contained, loadable extension folder.
+ */
+
 import { cpSync } from "node:fs";
 
 import * as esbuild from "esbuild";

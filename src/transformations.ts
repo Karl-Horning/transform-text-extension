@@ -1,4 +1,8 @@
 /**
+ * @fileoverview Pure text transformation functions used by the context menu.
+ */
+
+/**
  * Removes leading and trailing whitespace and collapses
  * internal consecutive spaces to a single space.
  *

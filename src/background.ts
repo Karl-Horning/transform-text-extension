@@ -1,3 +1,8 @@
+/**
+ * @fileoverview Background service worker: builds the context menu and
+ * applies the selected transformation to the active page.
+ */
+
 import browser from "webextension-polyfill";
 
 import {
@@ -41,6 +46,10 @@ const transformations: Record<string, (input: string) => string> = {
     removeSpecialCharacters,
 };
 
+/**
+ * A single context menu entry: either a separator, or a labelled item
+ * that triggers a transformation.
+ */
 type MenuItem =
     | { type: "separator"; id: string }
     | { type?: never; id: string; title: string };

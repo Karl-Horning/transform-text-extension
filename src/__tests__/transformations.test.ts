@@ -1,3 +1,7 @@
+/**
+ * @fileoverview Unit tests for the text transformation functions.
+ */
+
 import { describe, expect, it } from "vitest";
 import {
     alternatingCase,
