@@ -111,7 +111,7 @@ browser.contextMenus.onClicked.addListener((info, tab) => {
 
     const transformed = transformFn(info.selectionText);
 
-    browser.scripting.executeScript({
+    void browser.scripting.executeScript({
         target: { tabId: tab.id },
         func: (text: string) => {
             const activeElement = document.activeElement as HTMLElement;

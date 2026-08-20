@@ -14,7 +14,7 @@ A browser extension that adds text transformation options to the context menu. S
 - **Language**: TypeScript
 - **Build**: esbuild
 - **Testing**: Vitest
-- **Tooling**: ESLint, Prettier
+- **Tooling**: ESLint
 
 ## Installation
 
@@ -43,16 +43,17 @@ Then load the extension in your browser:
 
 ## Scripts
 
-| Command                      | Description                                        |
-| ---------------------------- | -------------------------------------------------- |
-| `npm run build`              | Compile TypeScript to `dist/`                      |
-| `npm run build:zip`          | Build and package for Chrome / Edge                |
-| `npm run build:zip:firefox`  | Build and package for Firefox                      |
-| `npm run build:zip:all`      | Build and package for all browsers                 |
-| `npm run build:source-zip`   | Package source code for store submission           |
-| `npm run test`               | Run all tests once                                 |
-| `npm run test:watch`         | Run tests in watch mode                            |
-| `npm run test:coverage`      | Run tests with coverage                            |
+| Command                      | Description                               |
+| ---------------------------- | ----------------------------------------- |
+| `npm run build`              | Compile TypeScript to `dist/`             |
+| `npm run build:zip`          | Build and package for Chrome / Edge       |
+| `npm run build:zip:firefox`  | Build and package for Firefox             |
+| `npm run build:zip:all`      | Build and package for all browsers        |
+| `npm run build:source-zip`   | Package source code for store submission  |
+| `npm run lint`               | Lint the source with ESLint               |
+| `npm run test`               | Run all tests once                        |
+| `npm run test:watch`         | Run tests in watch mode                   |
+| `npm run test:coverage`      | Run tests with coverage                   |
 
 ## Transformations
 

@@ -19,6 +19,7 @@
     "build:zip:firefox": "npm run build && npm run _zip:firefox",
     "build:zip:all": "npm run build && npm run _zip:chromium && npm run _zip:firefox",
     "build:source-zip": "zip -r transform-text-extension-source.zip . --exclude '*node_modules*' --exclude '*dist*' --exclude '*.git*' --exclude '*transform-text-extension.zip*' --exclude '*transform-text-extension-firefox.zip*' --exclude '*transform-text-extension-source.zip*'",
+    "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
@@ -30,7 +31,10 @@
     "@types/webextension-polyfill": "^0.12.5",
     "@vitest/coverage-v8": "^4.1.1",
     "esbuild": "^0.27.4",
+    "eslint": "^9.39.5",
+    "globals": "^17.11.0",
     "typescript": "^5.9.3",
+    "typescript-eslint": "^8.67.0",
     "vitest": "^4.1.1"
   },
   "dependencies": {
