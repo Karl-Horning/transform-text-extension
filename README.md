@@ -2,12 +2,12 @@
 
 A browser extension that adds text transformation options to the context menu. Select any text in an editable field, right-click, and apply a transformation instantly.
 
-![Transform Text Extension context menu showing transformation options](store/screenshot-1280x800.png)
+![Transform Text Extension context menu showing transformation options](store-assets/screenshot-1280x800.png)
 
-[![Available for Google Chrome](store/store-banners-chrome.webp)](https://chromewebstore.google.com/detail/transform-text/hniojnoepnkpmimpnbaljkkcmoaklcii)
-[![Available for Microsoft Edge](store/store-banners-edge.webp)](https://microsoftedge.microsoft.com/addons/detail/transform-text/jmmaiegdlpmbochdbahokkbjelncaioc)
-[![Available for Mozilla Firefox](store/store-banners-firefox.webp)](https://addons.mozilla.org/en-GB/firefox/addon/transform-text/)
-[![Support me on Ko-fi](store/support_me_on_kofi_badge_beige.webp)](https://ko-fi.com/karlhorning)
+[![Available for Google Chrome](store-assets/store-banners-chrome.webp)](https://chromewebstore.google.com/detail/transform-text/hniojnoepnkpmimpnbaljkkcmoaklcii)
+[![Available for Microsoft Edge](store-assets/store-banners-edge.webp)](https://microsoftedge.microsoft.com/addons/detail/transform-text/jmmaiegdlpmbochdbahokkbjelncaioc)
+[![Available for Mozilla Firefox](store-assets/store-banners-firefox.webp)](https://addons.mozilla.org/en-GB/firefox/addon/transform-text/)
+[![Support me on Ko-fi](store-assets/support_me_on_kofi_badge_beige.webp)](https://ko-fi.com/karlhorning)
 
 ## Tech Stack
 
@@ -33,27 +33,26 @@ Then load the extension in your browser:
 
 1. Go to `chrome://extensions`
 2. Enable **Developer mode**
-3. Click **Load unpacked** and select the project folder
+3. Click **Load unpacked** and select the `dist/` folder
 
 **Firefox:**
 
 1. Go to `about:debugging#/runtime/this-firefox`
 2. Click **Load Temporary Add-on**
-3. Select `manifest.firefox.json` inside the project folder
+3. Select `dist/manifest.json`
+
+Firefox removes temporary add-ons on restart, so you'll need to reload it each session.
 
 ## Scripts
 
-| Command                      | Description                               |
-| ---------------------------- | ----------------------------------------- |
-| `npm run build`              | Compile TypeScript to `dist/`             |
-| `npm run build:zip`          | Build and package for Chrome / Edge       |
-| `npm run build:zip:firefox`  | Build and package for Firefox             |
-| `npm run build:zip:all`      | Build and package for all browsers        |
-| `npm run build:source-zip`   | Package source code for store submission  |
-| `npm run lint`               | Lint the source with ESLint               |
-| `npm run test`               | Run all tests once                        |
-| `npm run test:watch`         | Run tests in watch mode                   |
-| `npm run test:coverage`      | Run tests with coverage                   |
+| Command                 | Description                                  |
+| ----------------------- | -------------------------------------------- |
+| `npm run build`         | Compile and copy the extension into `dist/`  |
+| `npm run package`       | Build and zip store packages into `release/` |
+| `npm run lint`          | Lint the source with ESLint                  |
+| `npm run test`          | Run all tests once                           |
+| `npm run test:watch`    | Run tests in watch mode                      |
+| `npm run test:coverage` | Run tests with coverage                      |
 
 ## Transformations
 
@@ -90,7 +89,7 @@ Found a bug or have a suggestion? [Open an issue](https://github.com/Karl-Hornin
 
 ## Design
 
-Source icon files are in `design/icons/` and were created in [Affinity Designer](https://affinity.serif.com/en-gb/designer/).
+Source design files are in `design/`, and the exported icons used by the extension are in `public/icons/`. Created in [Affinity Designer](https://affinity.serif.com/en-gb/designer/).
 
 Built with [Claude](https://claude.ai) as an AI pair programmer.
 

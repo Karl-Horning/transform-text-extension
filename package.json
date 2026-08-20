@@ -15,21 +15,17 @@
   "author": "Karl Horning",
   "scripts": {
     "build": "node build.js",
-    "build:zip": "npm run build && npm run _zip:chromium",
-    "build:zip:firefox": "npm run build && npm run _zip:firefox",
-    "build:zip:all": "npm run build && npm run _zip:chromium && npm run _zip:firefox",
-    "build:source-zip": "zip -r transform-text-extension-source.zip . --exclude '*node_modules*' --exclude '*dist*' --exclude '*.git*' --exclude '*transform-text-extension.zip*' --exclude '*transform-text-extension-firefox.zip*' --exclude '*transform-text-extension-source.zip*'",
     "lint": "eslint .",
+    "package": "npm run build && node scripts/package-extension.js",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage",
-    "_zip:chromium": "zip -r transform-text-extension.zip manifest.json dist/ icons/",
-    "_zip:firefox": "cp manifest.json manifest.json.tmp && cp manifest.firefox.json manifest.json && zip -r transform-text-extension-firefox.zip manifest.json dist/ icons/ && mv manifest.json.tmp manifest.json"
+    "test:coverage": "vitest run --coverage"
   },
   "devDependencies": {
     "@types/chrome": "^0.1.38",
     "@types/webextension-polyfill": "^0.12.5",
     "@vitest/coverage-v8": "^4.1.1",
+    "archiver": "^8.0.0",
     "esbuild": "^0.27.4",
     "eslint": "^9.39.5",
     "globals": "^17.11.0",
