@@ -40,6 +40,7 @@ A browser extension that adds text transformation options to the context menu. S
 - **Language**: TypeScript
 - **Build**: esbuild
 - **Testing**: Vitest
+- **Accessibility testing**: axe-core (docs pages)
 - **Tooling**: ESLint
 
 ## Notable decisions
@@ -47,6 +48,7 @@ A browser extension that adds text transformation options to the context menu. S
 - **Only editable fields are supported** — that means `<input>`, `<textarea>`, and any `contenteditable` element. Selected text in non-editable elements such as paragraphs and headings can't be replaced.
 - **Escape Newlines and Unescape Newlines can behave unexpectedly** — a browser limitation strips newlines from `selectionText` before the extension ever sees the selected text.
 - **Replacement doesn't always work in complex editors** — apps that manage their own editor state, such as Copilot and Gemini, may not accept the replacement or re-selection.
+- **`docs/*.test.ts` needed their own tsconfig** — they sit outside `src`, the only directory the main `tsconfig.json` includes, so ESLint's type-aware rules couldn't parse them until `tsconfig.docs.json` was added and referenced from the ESLint config.
 
 ## Local development
 
