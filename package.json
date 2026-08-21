@@ -15,6 +15,7 @@
   "author": "Karl Horning",
   "scripts": {
     "build": "node build.js",
+    "docs:serve": "python3 -m http.server 8000 --directory docs",
     "lint": "eslint .",
     "package": "npm run build && node scripts/package-extension.js",
     "test": "vitest run",

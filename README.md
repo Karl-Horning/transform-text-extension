@@ -2,6 +2,8 @@
 
 A browser extension that adds text transformation options to the context menu. Select any text in an editable field, right-click, and apply a transformation instantly.
 
+[Website](https://karl-horning.github.io/transform-text-extension/) · [Privacy Policy](https://karl-horning.github.io/transform-text-extension/privacy.html) · [Support me on Ko-fi](https://ko-fi.com/karlhorning)
+
 ## Screenshots and demo
 
 ![Transform Text Extension context menu showing transformation options](store-assets/screenshot-1280x800.png)
