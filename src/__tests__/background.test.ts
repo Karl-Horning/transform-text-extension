@@ -57,7 +57,7 @@ describe("buildContextMenu", () => {
         buildContextMenu();
 
         expect(mockContextMenusCreate).toHaveBeenCalledWith({
-            id: "separator-case",
+            id: "separator-code",
             type: "separator",
             parentId: "transformText",
             contexts: ["selection"],
@@ -96,33 +96,52 @@ function clickInfo(overrides: Partial<Menus.OnClickData>): Menus.OnClickData {
 describe("handleMenuClick", () => {
     const tab = { id: 7 } as Tabs.Tab;
 
-    it("does nothing for an unknown menu item ID", () => {
-        handleMenuClick(clickInfo({ menuItemId: "not-a-real-id" }), tab);
+    beforeEach(() => {
+        mockExecuteScript.mockResolvedValue([{ result: undefined }]);
+    });
+
+    it("does nothing for an unknown menu item ID", async () => {
+        await handleMenuClick(clickInfo({ menuItemId: "not-a-real-id" }), tab);
 
         expect(mockExecuteScript).not.toHaveBeenCalled();
     });
 
-    it("does nothing when there is no selected text", () => {
-        handleMenuClick(clickInfo({ selectionText: "" }), tab);
+    it("does nothing when there is no selected text", async () => {
+        await handleMenuClick(clickInfo({ selectionText: "" }), tab);
 
         expect(mockExecuteScript).not.toHaveBeenCalled();
     });
 
-    it("does nothing when the click has no tab ID", () => {
-        handleMenuClick(clickInfo({}), undefined);
+    it("does nothing when the click has no tab ID", async () => {
+        await handleMenuClick(clickInfo({}), undefined);
 
         expect(mockExecuteScript).not.toHaveBeenCalled();
     });
 
-    it("injects the transformed text into the clicked tab", () => {
-        handleMenuClick(clickInfo({}), tab);
+    it("falls back to info.selectionText when the live selection can't be read", async () => {
+        await handleMenuClick(clickInfo({}), tab);
 
-        expect(mockExecuteScript).toHaveBeenCalledTimes(1);
-        const call = mockExecuteScript.mock.calls[0][0] as {
+        expect(mockExecuteScript).toHaveBeenCalledTimes(2);
+        const replaceCall = mockExecuteScript.mock.calls[1][0] as {
             target: { tabId: number };
             args: string[];
         };
-        expect(call.target).toEqual({ tabId: 7 });
-        expect(call.args).toEqual(["HELLO"]);
+        expect(replaceCall.target).toEqual({ tabId: 7 });
+        expect(replaceCall.args).toEqual(["HELLO"]);
+    });
+
+    it("transforms the live DOM selection instead of info.selectionText, when available", async () => {
+        mockExecuteScript.mockResolvedValueOnce([{ result: "Hello\nWorld" }]);
+
+        await handleMenuClick(
+            clickInfo({ menuItemId: "escapeNewlines", selectionText: "Hello World" }),
+            tab,
+        );
+
+        expect(mockExecuteScript).toHaveBeenCalledTimes(2);
+        const replaceCall = mockExecuteScript.mock.calls[1][0] as {
+            args: string[];
+        };
+        expect(replaceCall.args).toEqual(["Hello\\nWorld"]);
     });
 });

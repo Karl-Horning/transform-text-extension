@@ -6,6 +6,7 @@
 import browser from "webextension-polyfill";
 import type { Menus, Tabs } from "webextension-polyfill";
 
+import { getSelectedText } from "./getSelectedText";
 import { replaceSelectedText } from "./replaceSelectedText";
 import {
     alternatingCase,
@@ -57,12 +58,9 @@ export type MenuItem =
     | { type?: never; id: string; title: string };
 
 /**
- * Labels and separators for the context menu, organised to match the website's grouping.
+ * Labels and separators for the context menu.
  */
 export const menuItems: MenuItem[] = [
-    { id: "escapeNewlines", title: "Escape Newlines" },
-    { id: "unescapeNewlines", title: "Unescape Newlines" },
-    { id: "separator-case", type: "separator" },
     { id: "uppercase", title: "Uppercase" },
     { id: "lowercase", title: "Lowercase" },
     { id: "sentenceCase", title: "Sentence Case" },
@@ -80,6 +78,9 @@ export const menuItems: MenuItem[] = [
     { id: "separator-cleanup", type: "separator" },
     { id: "trimWhitespace", title: "Trim Whitespace" },
     { id: "removeSpecialCharacters", title: "Remove Special Characters" },
+    { id: "separator-escaping", type: "separator" },
+    { id: "escapeNewlines", title: "Escape Newlines" },
+    { id: "unescapeNewlines", title: "Unescape Newlines" },
 ];
 
 /**
@@ -112,22 +113,34 @@ export function buildContextMenu(): void {
 }
 
 /**
- * Handles a context menu click: looks up the matching transformation,
- * applies it to the selected text, and injects the replacement into the
- * page the click happened in.
+ * Handles a context menu click: looks up the matching transformation, reads
+ * the current selection from the page (falling back to `info.selectionText`
+ * if that read comes back empty), applies the transformation, and injects
+ * the replacement into the page the click happened in.
  *
  * @param info - Details about the clicked menu item and current selection.
  * @param tab - The tab the click happened in.
  */
-export function handleMenuClick(
+export async function handleMenuClick(
     info: Menus.OnClickData,
     tab: Tabs.Tab | undefined,
-): void {
+): Promise<void> {
     const transformFn = transformations[info.menuItemId];
 
     if (!transformFn || !info.selectionText || !tab?.id) return;
 
-    const transformed = transformFn(info.selectionText);
+    const [selectionResult] = await browser.scripting.executeScript({
+        target: { tabId: tab.id },
+        func: getSelectedText,
+    });
+
+    const liveSelection = selectionResult?.result;
+    const sourceText =
+        typeof liveSelection === "string" && liveSelection.length > 0
+            ? liveSelection
+            : info.selectionText;
+
+    const transformed = transformFn(sourceText);
 
     void browser.scripting.executeScript({
         target: { tabId: tab.id },
@@ -137,4 +150,6 @@ export function handleMenuClick(
 }
 
 browser.runtime.onInstalled.addListener(buildContextMenu);
-browser.contextMenus.onClicked.addListener(handleMenuClick);
+browser.contextMenus.onClicked.addListener((info, tab) => {
+    void handleMenuClick(info, tab);
+});
