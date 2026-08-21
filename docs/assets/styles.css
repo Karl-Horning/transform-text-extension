@@ -664,6 +664,19 @@ footer.site-footer .links a:hover::after {
     height: 18px;
 }
 
+/* Stacks before .hero's own 760px breakpoint: the three store badges (fixed
+   width) stop fitting alongside the screenshot around ~1050-1080px, well
+   before the rest of the hero needs to change. */
+@media (max-width: 1080px) {
+    .hero-body {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .hero-body p {
+        max-width: none;
+    }
+}
+
 @media (max-width: 760px) {
     .hero {
         padding-top: 64px;
@@ -671,13 +684,6 @@ footer.site-footer .links a:hover::after {
     }
     .hero h1 {
         font-size: 48px;
-    }
-    .hero-body {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-    .hero-body p {
-        max-width: none;
     }
     .feature-grid {
         grid-template-columns: 1fr;
