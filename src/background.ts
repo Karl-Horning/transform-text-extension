@@ -113,9 +113,10 @@ export function buildContextMenu(): void {
 }
 
 /**
- * Handles a context menu click: looks up the matching transformation,
- * applies it to the selected text, and injects the replacement into the
- * page the click happened in.
+ * Handles a context menu click: looks up the matching transformation, reads
+ * the current selection from the page (falling back to `info.selectionText`
+ * if that read comes back empty), applies the transformation, and injects
+ * the replacement into the page the click happened in.
  *
  * @param info - Details about the clicked menu item and current selection.
  * @param tab - The tab the click happened in.

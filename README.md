@@ -46,7 +46,7 @@ A browser extension that adds text transformation options to the context menu. S
 ## Notable decisions
 
 - **Only editable fields are supported** — that means `<input>`, `<textarea>`, and any `contenteditable` element. Selected text in non-editable elements such as paragraphs and headings can't be replaced.
-- **Escape Newlines and Unescape Newlines can behave unexpectedly** — a browser limitation strips newlines from `selectionText` before the extension ever sees the selected text.
+- **Selection text is read directly from the page, not from `info.selectionText`** — Chrome replaces every line break in `info.selectionText` with a space before the extension ever sees it, which broke Escape/Unescape Newlines. A small script is injected to read the live selection from the active element instead, which preserves real newlines. Falls back to `info.selectionText` if that read fails. Firefox was never affected, but goes through the same path for consistency.
 - **Replacement doesn't always work in complex editors** — apps that manage their own editor state, such as Copilot and Gemini, may not accept the replacement or re-selection.
 - **`docs/*.test.ts` needed their own tsconfig** — they sit outside `src`, the only directory the main `tsconfig.json` includes, so ESLint's type-aware rules couldn't parse them until `tsconfig.docs.json` was added and referenced from the ESLint config.
 
