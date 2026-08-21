@@ -2,7 +2,7 @@
  * @fileoverview Adds a border to the sticky header once the page has
  * scrolled, highlights whichever nav link matches the section currently
  * in view, and flips the Install link's arrow once its target has been
- * scrolled past (so it points back up rather than down).
+ * scrolled past.
  */
 
 (function () {

@@ -1,6 +1,5 @@
 /**
- * @fileoverview Keeps the footer copyright year range current without a
- * static year that goes stale.
+ * @fileoverview Keeps the footer copyright year range current.
  */
 
 (function () {
