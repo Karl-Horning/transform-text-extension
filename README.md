@@ -2,16 +2,15 @@
 
 A browser extension that adds text transformation options to the context menu. Select any text in an editable field, right-click, and apply a transformation instantly.
 
-[Website](https://karl-horning.github.io/transform-text-extension/) · [Privacy Policy](https://karl-horning.github.io/transform-text-extension/privacy.html) · [Support me on Ko-fi](https://ko-fi.com/karlhorning)
+[Website](https://www.karlhorning.dev/transform-text-extension/) · [Privacy Policy](https://www.karlhorning.dev/transform-text-extension/privacy.html) · [Support me on Ko-fi](https://ko-fi.com/karlhorning)
 
 ## Screenshots and demo
 
 ![Transform Text Extension context menu showing transformation options](store-assets/screenshot-1280x800.png)
 
-[![Available for Google Chrome](store-assets/store-banners-chrome.webp)](https://chromewebstore.google.com/detail/transform-text/hniojnoepnkpmimpnbaljkkcmoaklcii)
-[![Available for Microsoft Edge](store-assets/store-banners-edge.webp)](https://microsoftedge.microsoft.com/addons/detail/transform-text/jmmaiegdlpmbochdbahokkbjelncaioc)
-[![Available for Mozilla Firefox](store-assets/store-banners-firefox.webp)](https://addons.mozilla.org/en-GB/firefox/addon/transform-text/)
-[![Support me on Ko-fi](store-assets/support_me_on_kofi_badge_beige.webp)](https://ko-fi.com/karlhorning)
+<a href="https://chromewebstore.google.com/detail/transform-text/hniojnoepnkpmimpnbaljkkcmoaklcii"><img src="store-assets/chrome-dark.svg" alt="Available for Google Chrome" width="190"></a>
+<a href="https://microsoftedge.microsoft.com/addons/detail/transform-text/jmmaiegdlpmbochdbahokkbjelncaioc"><img src="store-assets/edge-dark.svg" alt="Available for Microsoft Edge" width="190"></a>
+<a href="https://addons.mozilla.org/en-GB/firefox/addon/transform-text/"><img src="store-assets/firefox-dark.svg" alt="Available for Mozilla Firefox" width="190"></a>
 
 ## Features
 
@@ -84,6 +83,7 @@ Firefox removes temporary add-ons on restart, so you'll need to reload it each s
 | `npm run test`          | Run all tests once                           |
 | `npm run test:watch`    | Run tests in watch mode                      |
 | `npm run test:coverage` | Run tests with coverage                      |
+| `npm run docs:serve`    | Serve the `docs/` site locally               |
 
 ## Feedback and issues
 
@@ -94,6 +94,8 @@ Found a bug or have a suggestion? [Open an issue](https://github.com/Karl-Hornin
 Source design files are in `design/` and were created in [Affinity](https://www.affinity.studio/graphic-design-software).
 
 Built with [Claude](https://claude.ai) as an AI coding assistant. Architecture, decisions, testing, and the writing voice throughout are mine.
+
+<a href="https://ko-fi.com/karlhorning"><img src="store-assets/support_me_on_kofi_badge_beige.png" alt="Support me on Ko-fi" width="100"></a>
 
 ## License
 
