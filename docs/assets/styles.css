@@ -693,6 +693,9 @@ footer.site-footer .links a:hover::after {
     .hero h1 {
         font-size: 48px;
     }
+    .badge-row {
+        justify-content: center;
+    }
     .feature-grid {
         grid-template-columns: 1fr;
     }
