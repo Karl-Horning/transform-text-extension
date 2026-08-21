@@ -6,6 +6,7 @@
 import browser from "webextension-polyfill";
 import type { Menus, Tabs } from "webextension-polyfill";
 
+import { getSelectedText } from "./getSelectedText";
 import { replaceSelectedText } from "./replaceSelectedText";
 import {
     alternatingCase,
@@ -119,15 +120,26 @@ export function buildContextMenu(): void {
  * @param info - Details about the clicked menu item and current selection.
  * @param tab - The tab the click happened in.
  */
-export function handleMenuClick(
+export async function handleMenuClick(
     info: Menus.OnClickData,
     tab: Tabs.Tab | undefined,
-): void {
+): Promise<void> {
     const transformFn = transformations[info.menuItemId];
 
     if (!transformFn || !info.selectionText || !tab?.id) return;
 
-    const transformed = transformFn(info.selectionText);
+    const [selectionResult] = await browser.scripting.executeScript({
+        target: { tabId: tab.id },
+        func: getSelectedText,
+    });
+
+    const liveSelection = selectionResult?.result;
+    const sourceText =
+        typeof liveSelection === "string" && liveSelection.length > 0
+            ? liveSelection
+            : info.selectionText;
+
+    const transformed = transformFn(sourceText);
 
     void browser.scripting.executeScript({
         target: { tabId: tab.id },
@@ -137,4 +149,6 @@ export function handleMenuClick(
 }
 
 browser.runtime.onInstalled.addListener(buildContextMenu);
-browser.contextMenus.onClicked.addListener(handleMenuClick);
+browser.contextMenus.onClicked.addListener((info, tab) => {
+    void handleMenuClick(info, tab);
+});
