@@ -15,6 +15,7 @@
   "author": "Karl Horning",
   "scripts": {
     "build": "node build.js",
+    "docs:serve": "python3 -m http.server 8000 --directory docs",
     "lint": "eslint .",
     "package": "npm run build && node scripts/package-extension.js",
     "test": "vitest run",
@@ -23,9 +24,11 @@
   },
   "devDependencies": {
     "@types/chrome": "^0.1.38",
+    "@types/node": "^26.2.0",
     "@types/webextension-polyfill": "^0.12.5",
     "@vitest/coverage-v8": "^4.1.1",
     "archiver": "^8.0.0",
+    "axe-core": "^4.13.0",
     "esbuild": "^0.27.4",
     "eslint": "^9.39.5",
     "globals": "^17.11.0",
