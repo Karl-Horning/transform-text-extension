@@ -35,7 +35,13 @@
         function (entries) {
             entries.forEach(function (entry) {
                 var link = linkByTargetId[entry.target.id];
-                if (link) link.classList.toggle("is-active", entry.isIntersecting);
+                if (!link) return;
+                link.classList.toggle("is-active", entry.isIntersecting);
+                if (entry.isIntersecting) {
+                    link.setAttribute("aria-current", "location");
+                } else {
+                    link.removeAttribute("aria-current");
+                }
             });
         },
         { rootMargin: "-45% 0px -50% 0px" },

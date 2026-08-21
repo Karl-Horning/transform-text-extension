@@ -85,6 +85,18 @@ button:focus-visible {
     border-radius: 2px;
 }
 
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 .skip-link {
     position: absolute;
     left: -9999px;
@@ -296,6 +308,15 @@ nav.primary a.is-active {
 .badge-link:active {
     box-shadow: 1px 1px 0 var(--fg-on-light);
     transform: translate(0, 0);
+}
+
+/* The generic focus ring colour (red-on-light-text) drops to ~1.5:1 against
+   the closing CTA's red background — nowhere near the 3:1 WCAG 1.4.11
+   minimum. fg-on-light stays well above 3:1 against both the cream page
+   background and the red CTA band, so it works everywhere .badge-link
+   appears. */
+.badge-link:focus-visible {
+    outline-color: var(--fg-on-light);
 }
 
 .badge-link img {
@@ -648,13 +669,16 @@ footer.site-footer .links a:hover::after {
 .icon-links {
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding-right: 24px;
+    gap: 8px;
+    padding-right: 20px;
     border-right: 1px solid var(--divider-on-light);
 }
 
 .icon-links a {
+    /* Padding brings the tappable area up to 26x26 (the icon itself stays
+       18x18) to clear WCAG 2.2's 24x24 minimum target size (SC 2.5.8). */
     display: block;
+    padding: 4px;
     color: var(--muted-on-light);
     transition:
         color 0.15s ease,
@@ -815,4 +839,19 @@ footer.site-footer .links a:hover::after {
     font-size: 18px;
     color: var(--muted-on-light);
     margin: 0 0 24px;
+}
+
+/* Forced-colors mode (e.g. Windows High Contrast) strips background-image
+   but exempts `transparent` from being overridden — the grain-clipped
+   headings below would otherwise render as invisible text. Fall back to a
+   solid system colour instead of fighting the user's chosen palette. */
+@media (forced-colors: active) {
+    .hero h1,
+    .hero h1 .accent,
+    .notfound h1,
+    .policy h1 {
+        background: none;
+        color: CanvasText;
+        -webkit-text-fill-color: CanvasText;
+    }
 }
