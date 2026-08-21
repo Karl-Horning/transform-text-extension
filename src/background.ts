@@ -58,12 +58,9 @@ export type MenuItem =
     | { type?: never; id: string; title: string };
 
 /**
- * Labels and separators for the context menu, organised to match the website's grouping.
+ * Labels and separators for the context menu.
  */
 export const menuItems: MenuItem[] = [
-    { id: "escapeNewlines", title: "Escape Newlines" },
-    { id: "unescapeNewlines", title: "Unescape Newlines" },
-    { id: "separator-case", type: "separator" },
     { id: "uppercase", title: "Uppercase" },
     { id: "lowercase", title: "Lowercase" },
     { id: "sentenceCase", title: "Sentence Case" },
@@ -81,6 +78,9 @@ export const menuItems: MenuItem[] = [
     { id: "separator-cleanup", type: "separator" },
     { id: "trimWhitespace", title: "Trim Whitespace" },
     { id: "removeSpecialCharacters", title: "Remove Special Characters" },
+    { id: "separator-escaping", type: "separator" },
+    { id: "escapeNewlines", title: "Escape Newlines" },
+    { id: "unescapeNewlines", title: "Unescape Newlines" },
 ];
 
 /**

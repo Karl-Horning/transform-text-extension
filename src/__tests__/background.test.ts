@@ -57,7 +57,7 @@ describe("buildContextMenu", () => {
         buildContextMenu();
 
         expect(mockContextMenusCreate).toHaveBeenCalledWith({
-            id: "separator-case",
+            id: "separator-code",
             type: "separator",
             parentId: "transformText",
             contexts: ["selection"],
