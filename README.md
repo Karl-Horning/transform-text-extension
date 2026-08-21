@@ -14,10 +14,6 @@ A browser extension that adds text transformation options to the context menu. S
 
 ## Features
 
-### Escaping
-
-- Escape Newlines / Unescape Newlines
-
 ### Case
 
 - Uppercase / Lowercase
@@ -34,6 +30,10 @@ A browser extension that adds text transformation options to the context menu. S
 ### Cleanup
 
 - Trim Whitespace, Remove Special Characters
+
+### Escaping
+
+- Escape Newlines / Unescape Newlines
 
 ## Tech stack
 
